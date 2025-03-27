@@ -25,10 +25,10 @@ python3 bot.py
 
 
 ```
-bash <(curl -s https://raw.githubusercontent.com/gamerzhacker1/hk-i9-v2/main/install.sh)
+bash <(curl -s https://raw.githubusercontent.com/gamerzhacker1/hk-i8/main/install.sh)
   ```
 ```
-bash <(wget -qO- https://raw.githubusercontent.com/gamerzhacker1/hk-i9-v2/main/install.sh)
+bash <(wget -qO- https://raw.githubusercontent.com/gamerzhacker1/hk-i8/main/install.sh)
  ```
 Join Our Discord Server to get Activation Key : https://discord.gg/r2vmR5jbXt
 
