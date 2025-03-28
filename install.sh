@@ -21,7 +21,7 @@ if ! command -v python3 &> /dev/null; then
 fi
 
 # Verify the key
-CORRECT_KEY="hk-i8"
+CORRECT_KEY="hk-i9"
 read -p "Enter the setup key to proceed: " USER_KEY
 
 if [[ "$USER_KEY" != "$CORRECT_KEY" ]]; then
