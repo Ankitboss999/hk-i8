@@ -420,12 +420,12 @@ def generate_random_port():
     return random.randint(1025, 65535)
 
 async def create_server_task(interaction):
-    await interaction.response.send_message(embed=discord.Embed(description="🛠️ **Creating VPS with:**
+    await interaction.response.send_message(embed=discord.Embed(description= "🛠️ **Creating VPS with:**
 - 💾 **RAM:** 32g
 - 🔥 **Cores:** 12
 - 📦 **Container Name:** hk-i9 
 
-⏳ **This may take a few seconds...**", color=0x00ff00))
+⏳ **This may take a few seconds...** ", color=0x00ff00))
     userid = str(interaction.user.id)
     if count_user_servers(userid) >= SERVER_LIMIT:
         await interaction.followup.send(embed=discord.Embed(description="```Error: Instance Limit-reached```", color=0xff0000))
@@ -454,7 +454,7 @@ async def create_server_task(interaction):
     if ssh_session_line:
         await interaction.user.send(embed=discord.Embed(description=f"### Successfully created Instance\nSSH Session Command: ```{ssh_session_line}```\nOS: Ubuntu 22.04\nPassword: root", color=0x00ff00))
         add_to_database(userid, container_id, ssh_session_line)
-        await interaction.followup.send(embed=discord.Embed(description="✅ **VPS created successfully. Check your DM for details.**", color=0x00ff00))
+        await interaction.followup.send(embed=discord.Embed(description= "✅ **VPS created successfully. Check your DM for details.**" , color=0x00ff00))
     else:
         await interaction.followup.send(embed=discord.Embed(description="### Something went wrong or the Instance is taking longer than expected. If this problem continues, Contact Support.", color=0xff0000))
         subprocess.run(["docker", "kill", container_id])
@@ -508,7 +508,7 @@ async def list_servers(interaction: discord.Interaction):
         embed = discord.Embed(title="Your Instances", color=0x00ff00)
         for server in servers:
             _, container_name, _ = server.split('|')
-            embed.add_field(name=container_name, value="32GB RAM - Premuim - 4 cores", inline=False)
+            embed.add_field(name=container_name, value="128GB RAM - Premuim - 20 cores", inline=False)
         await interaction.followup.send(embed=embed)
     else:
         await interaction.followup.send(embed=discord.Embed(description="You have no servers.", color=0xff0000))
@@ -522,7 +522,7 @@ async def execute_command(command):
     stdout, stderr = await process.communicate()
     return stdout.decode(), stderr.decode()
 
-PUBLIC_IP = '138.68.79.95'
+PUBLIC_IP = '222.99.22.11'
 
 async def capture_output(process, keyword):
     while True:
