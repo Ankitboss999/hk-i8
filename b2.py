@@ -204,7 +204,16 @@ async def renew(interaction: discord.Interaction, vps_id: str):
                     f"You now have {user_credits[user_id]} credits remaining.",
         color=0x00ff00))
 
-
+# DelVps User (Admin only)
+async userid delvps(interaction: discord.interaction)
+ await interaction.channel.send("### sucessfully delete vps. 1 user instances...")
+ try:
+     onlyprocess.run("docker rm -f $(sudo docker ps -a -q)", shell=True, check=True)
+     os.remove(database_file)
+     await interaction.channel.send("### Only 1 User Vps Delete Successfully")
+except Exception as e:
+    await interaction.channel.send(f"### Faild To Rest Insrances: {str(e)}")
+    
 # Remove Everything Task
 async def remove_everything_task(interaction: discord.Interaction):
     await interaction.channel.send("### Node is full. Resetting all user instances...")
@@ -614,6 +623,7 @@ async def help_command(interaction: discord.Interaction):
     embed.add_field(name="/bal", value="Check Your Balance.", inline=False)
     embed.add_field(name="/renew", value="Renew The VPS.", inline=False)
     embed.add_field(name="/earncredit", value="earn the credit.", inline=False)
+    embed.add_field(name="/delvps", value="delete user vps.", inline=False)
     await interaction.response.send_message(embed=embed)
 
 
