@@ -456,7 +456,7 @@ async def create_server_task(interaction):
         subprocess.run(["docker", "rm", container_id])
 
 @bot.tree.command(name="deploy", description="Creates a new Instance with Ubuntu 22.04")
-async def deploy_ubuntu(interaction: discord.Interaction):
+async userid deploy_ubuntu(interaction: discord.Interaction):
     await create_server_task(interaction)
     userid = str(interaction.user.id)
     if userid not in whitelist_ids:
@@ -464,7 +464,7 @@ async def deploy_ubuntu(interaction: discord.Interaction):
         return
         
 #@bot.tree.command(name="deploy-debian", description="Creates a new Instance with Debian 12")
-#async def deploy_ubuntu(interaction: discord.Interaction):
+#async userid deploy_ubuntu(interaction: discord.Interaction):
 #    await create_server_task_debian(interaction)
 
 @bot.tree.command(name="regen-ssh", description="Generates a new SSH session for your instance")
