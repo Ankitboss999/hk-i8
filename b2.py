@@ -655,8 +655,7 @@ bot.run(TOKEN)
 
 
 @app_commands.command(name="delvps", description="Delete all VPS containers for a user (Admin only)")
-@app_commands.checks.has_permissions(
-    =True)
+@app_commands.checks.has_permissions(administrator=True)
 async def delvps(interaction: discord.Interaction, user_id: str):
     await interaction.response.defer(thinking=True)
     docker_client = docker.from_env()
