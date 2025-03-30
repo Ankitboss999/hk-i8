@@ -456,7 +456,7 @@ async def create_server_task(interaction):
         subprocess.run(["docker", "rm", container_id])
 
 @bot.tree.command(name="deploy", description="Creates a new Instance with Ubuntu 22.04")
-async defdeploy_ubuntu(interaction: discord.Interaction):
+async def deploy_ubuntu(interaction: discord.Interaction):
     await create_server_task(interaction)
 
 #@bot.tree.command(name="deploy-debian", description="Creates a new Instance with Debian 12")
@@ -614,6 +614,20 @@ async def remove_server(interaction: discord.Interaction, container_name: str):
     except subprocess.CalledProcessError as e:
         await interaction.response.send_message(embed=discord.Embed(description=f"Error deleting instance: {e}", color=0xff0000))
 
+@bot.tree.command(name="ListAdmin", description="Lists all Users Instances")
+async def list_servers(interaction: discord.Interaction):
+    await interaction.response.defer()
+    userid = str(interaction.user.id)
+    servers = get_userall_servers(userid)
+    if servers:
+        embed = discord.Embed(title="Your Instances", color=0x00ff00)
+        for server in servers:
+            _, container_name, _ = server.split('|')
+            embed.add_field(name=container_name, value="64GB RAM - Premuim - 4 cores", inline=False)
+        await interaction.followup.send(embed=embed)
+    else:
+        await interaction.followup.send(embed=discord.Embed(description="All have no servers.", color=0xff0000))
+
             
 @bot.tree.command(name="help", description="Shows the help message")
 async def help_command(interaction: discord.Interaction):
@@ -632,6 +646,7 @@ async def help_command(interaction: discord.Interaction):
     embed.add_field(name="/earncredit", value="earn the credit.", inline=False)
     embed.add_field(name="/delvps", value="delete vps (admin only).", inline=False)
     embed.add_field(name="/node_admin", value="node admin list (admin only).", inline=False)
+    embed.add_field(name="/listadmin", value="list all users servers (admin only).", inline=False)
     await interaction.response.send_message(embed=embed)
 
 
