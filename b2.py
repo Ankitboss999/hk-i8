@@ -456,20 +456,12 @@ async def create_server_task(interaction):
         subprocess.run(["docker", "rm", container_id])
 
 @bot.tree.command(name="deploy", description="Creates a new Instance with Ubuntu 22.04")
-async def deploy_ubuntu(interaction: discord.Interaction):
+async defdeploy_ubuntu(interaction: discord.Interaction):
     await create_server_task(interaction)
-    userid = str(interaction.user.id)
-    if userid not in whitelist_ids:
-        await interaction.response.send_message(embed=discord.Embed(description="You do not have permission to use this command.", color=0xff0000))
-        return
-        
+
 #@bot.tree.command(name="deploy-debian", description="Creates a new Instance with Debian 12")
 #async def deploy_ubuntu(interaction: discord.Interaction):
 #    await create_server_task_debian(interaction)
-#    userid = str(interaction.user.id)
-#    if userid not in whitelist_ids:
-#       await interaction.response.send_message(embed=discord.Embed(description="You do not have permission to use this command.", color=0xff0000))
-#        return
 
 @bot.tree.command(name="regen-ssh", description="Generates a new SSH session for your instance")
 @app_commands.describe(container_name="The name/ssh-command of your Instance")
@@ -639,6 +631,7 @@ async def help_command(interaction: discord.Interaction):
     embed.add_field(name="/renew", value="Renew The VPS.", inline=False)
     embed.add_field(name="/earncredit", value="earn the credit.", inline=False)
     embed.add_field(name="/delvps", value="delete vps (admin only).", inline=False)
+    embed.add_field(name="/node_admin", value="node admin list (admin only).", inline=False)
     await interaction.response.send_message(embed=embed)
 
 
@@ -647,7 +640,8 @@ bot.run(TOKEN)
 
 
 @app_commands.command(name="delvps", description="Delete all VPS containers for a user (Admin only)")
-@app_commands.checks.has_permissions(administrator=True)
+@app_commands.checks.has_permissions(
+    =True)
 async def delvps(interaction: discord.Interaction, user_id: str):
     await interaction.response.defer(thinking=True)
     docker_client = docker.from_env()
